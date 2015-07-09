@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Created Tiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tiles</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @new_tiles.each do |new_tile| %>
+      <tr>
+        
+        
+        <td><%= image_tag new_tile.output_image_url(:thumb) %></td>
+        <td><%= link_to 'Show', new_tile %></td>
+        <td><%= link_to 'Edit', edit_new_tile_path(new_tile) %></td>
+        <td><%= link_to 'Destroy', new_tile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New tile', new_new_tile_path %>

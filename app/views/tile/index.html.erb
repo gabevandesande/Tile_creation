@@ -1,0 +1,86 @@
+<!-- <html>
+<h1> Images </h1>
+<head>
+
+
+<style>
+div.img {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #000000;
+    height: auto;
+    width: auto;
+    float: left;
+    text-align: center;
+}
+
+div.img img {
+    display: inline;
+    margin: 5px;
+    border: 1px solid #ffffff;
+}
+
+div.img a:hover img {
+    border:1px solid #000000;
+}
+
+div.desc {
+    text-align: center;
+    font-weight: normal;
+    width: 120px;
+    margin: 5px;
+}
+</style>
+</head>
+<body>
+
+<div class="img">
+  <a target="_blank" href="abstractnature.gif">
+    <img src="abstractnature.gif" alt="Image" width="200" height="200">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+
+</div>
+<div class="img">
+  <a target="_blank" href="/hobbies.gif">
+    <img src="/hobbies.gif" alt="Image" width="200" height="200">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+
+
+
+<input type="text">
+<input type="file">
+
+</body>
+</html>
+
+<script type="text/javascript">
+function draw() {
+   
+   //var cimg = document.getElementById('imgCanvas').getContext('2d');
+   var ctx = document.getElementById('textCanvas').getContext('2d');
+   ctx.canvas.width  = 640;
+   ctx.canvas.height = 640;
+   var img = new Image();
+   
+   img.onload = function(){
+     ctx.drawImage(img,0,0);
+     
+     ctx.fillStyle = 'blue';
+     ctx.font = '24pt Calibri';
+     ctx.align = 'left'
+
+  	 
+  	 ctx.fillText("Inspiration is something", 320,300);
+  	 ctx.fillText("found beneath passion", 320,320);
+  	 ctx.fillText("but above desire", 320,340);
+  	};
+  	img.src="http://tramuntana.tk/wp-content/uploads/nature-30794.jpg";
+  	
+}
+draw()
+	
+</script>
+ -->

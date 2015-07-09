@@ -1,0 +1,1 @@
+puts `./imageput.sh`, `open tile.gif`

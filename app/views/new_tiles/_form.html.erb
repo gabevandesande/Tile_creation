@@ -1,0 +1,69 @@
+<%= form_for @new_tile, html: { multipart: true } do |f| %>
+  <% if @new_tile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@new_tile.errors.count, "error") %> prohibited this new_tile from being saved:</h2>
+
+      <ul>
+      <% @new_tile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :original_image %><br>
+    <%= f.file_field :original_image %>
+  </div>
+  <div class="suggestion">
+    <p> Suggested Size: 640 x 640 </p>
+  </div>
+  <div class="field">
+    <%= f.label :quote %><br>
+    <%= f.text_area :quote %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Font_Size %><br>
+    <%= f.text_field :font_size %>
+  </div>
+  <div class="suggestion">
+    <p> Suggested Font Size: 50 - 80 </p>
+  </div>
+  <div class="field">
+    <%= f.label :Font_Color %><br>
+    <%= f.text_field :font_color %>
+  </div>
+  <div class="field">
+    <%= f.label :Font_Outline_Color %><br>
+    <%= f.text_field :font_outline %>
+  </div>
+  <div class="suggestion">
+    <p> If no outline is required, set to the same color as font </p>
+  </div>
+
+  <div class="field">
+    <%= f.label :font_style %><br>
+    <%= f.text_field :font_style %>
+  </div>
+  <div class="suggestion">
+    <strong><p> Suggested Fonts:</p></strong>
+    <p> Andale-Mono </p>
+    <p> American-Typewriter-light </p>
+    <p> courier </p>
+    <p> Bauhaus-93 </p>
+    
+  </div>
+  <div class="field">
+    <%= f.label :border_color %><br>
+    <%= f.text_field :border_color %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+
+  </div>
+
+
+<% end %>

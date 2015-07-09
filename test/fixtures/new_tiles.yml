@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  original_image: MyString
+  text_input: MyText
+  output_image: MyString
+
+two:
+  original_image: MyString
+  text_input: MyText
+  output_image: MyString
