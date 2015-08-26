@@ -1,69 +1,449 @@
-<%= form_for @new_tile, html: { multipart: true } do |f| %>
-  <% if @new_tile.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@new_tile.errors.count, "error") %> prohibited this new_tile from being saved:</h2>
+<!-- NOTES
+blue: #589EDB
+red: #FF565B
+3. Sort quotes bases on length? Genre?
+-->
 
-      <ul>
-      <% @new_tile.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<html>
 
-  <div class="field">
-    <%= f.label :original_image %><br>
-    <%= f.file_field :original_image %>
-  </div>
-  <div class="suggestion">
-    <p> Suggested Size: 640 x 640 </p>
-  </div>
-  <div class="field">
-    <%= f.label :quote %><br>
-    <%= f.text_area :quote %>
-  </div>
+<!-- External Sources -->
+<link href='http://fonts.googleapis.com/css?family=Lobster|Indie+Flower|Raleway|Shadows+Into+Light|Cinzel|Rock+Salt' rel='stylesheet' type='text/css'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"> </script>
+<script src="https://cdn.jsdelivr.net/filesaver.js/0.2/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webshim/1.15.8/dev/shims/canvas-blob.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<body>
+  <div class="container">
+    <!-- Description Tag -->
 
-  <div class="field">
-    <%= f.label :Font_Size %><br>
-    <%= f.text_field :font_size %>
-  </div>
-  <div class="suggestion">
-    <p> Suggested Font Size: 50 - 80 </p>
-  </div>
-  <div class="field">
-    <%= f.label :Font_Color %><br>
-    <%= f.text_field :font_color %>
-  </div>
-  <div class="field">
-    <%= f.label :Font_Outline_Color %><br>
-    <%= f.text_field :font_outline %>
-  </div>
-  <div class="suggestion">
-    <p> If no outline is required, set to the same color as font </p>
-  </div>
 
-  <div class="field">
-    <%= f.label :font_style %><br>
-    <%= f.text_field :font_style %>
-  </div>
-  <div class="suggestion">
-    <strong><p> Suggested Fonts:</p></strong>
-    <p> Andale-Mono </p>
-    <p> American-Typewriter-light </p>
-    <p> courier </p>
-    <p> Bauhaus-93 </p>
+
+    <!-- CARRIERWAVE PRESETS -->
+
+    <%= form_for @new_tile, html: { multipart: true } do |f| %>
+
+
+    <!-- HTML -->
     
-  </div>
-  <div class="field">
-    <%= f.label :border_color %><br>
-    <%= f.text_field :border_color %>
-  </div>
+
+    <div class="header">Create Your Own Content</div>
+    
+    <!-- Tile Preview -->
+
+    <div class="imagecontainer">
+      <div id="imagewrap" class="wrap">
+        <img src="../images/travel.gif" id="img_prev" width="450" height="450" />
+        <div id="contrastFilter">&nbsp;</div>
+        <h3 class="desc">"Perfection is not attainable, but if we chase perfection we can catch excellence."</h3>
+      </div>
+    </div>
+    
+    <!-- Description Tag -->
+    
+    <div class="description">What do you want to say?</div>
+    
+    <!-- Quote Textarea -->
+    
+
+    <div id="quote" class="quote"> 
+      <div class="field">
+        <textarea class="textarea" id="quoteArea" rows="5" cols="53"></textarea>
+        <a id="randomQuote" class="randomQuote">Random Quote  &#x270E;</a>
+          <!-- <div id="category_dropdown" class="dropdown">
+            <nav id="category_nav_wrap">
+              <ul>
+                <li class="current-menu-item"><a>
+                  <li><a id="menutitle4" >Select</a>
+                    <ul class="categories" >
+                      <li><a>Age</a></li>
+                      <li><a>Wisdom</a></li>
+                      <li><a>Family</a></li>
+                      <li><a>Love</a></li>
+                      <li><a>Nature</a></li>
+                      <li><a>Power</a></li>
+                      <li><a>Motivational</a></li>
+                      <li><a>Success</a></li>
+                      <li><a>Positive</a></li>
+                      <li><a>Peace</a></li>
+                      <li><a>Fitness</a></li>
+                      <li><a>Knowledge</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div> -->
+      </div>
+    </div>
+
+    <!-- Description Tag -->
+  
+    <div class="description">Text Options:<div>
+    
+    <!-- Font style dropdown menu -->
+    <div class="textOptions">
+
+    <div id="font_dropdown" class="dropdown">
+      <nav id="font_dropdown">
+        <ul>
+          <li class="current-menu-item">
+            <li><a id="menutitle" >Raleway &#x25be;</a>
+              <ul class="font-names" >
+                <li style="font-family: Raleway"><a>Raleway</a></li>
+                <li style="font-family: Courier"><a>Courier</a></li>
+                <li style="font-family: Copperplate"><a>Copperplate</a></li>
+                <li style="font-family: Futura"><a>Futura</a></li>
+                <li style="font-family: Rockwell"><a>Rockwell</a></li>
+                <li style="font-family: Cinzel"><a>Cinzel</a></li>
+                <li style="font-family: Fantasy"><a>Fantasy</a></li>
+                <li style="font-family: Cursive"><a>Cursive</a></li>
+                <li style="font-family: Indie flower"><a>Indie Flower</a></li>
+                <li style="font-family: Shadows into light"><a>Shadows</a></li>
+                <li style="font-family: Lobster"><a>Lobster</a></li>
+                <li style="font-family: Rock Salt"><a>Rock Salt</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Font size dropdown menu -->
+
+      <div id="font_size_dropdown" class="dropdown">
+        <nav id="size_dropdown">
+          <ul>
+            <li class="current-menu-item">
+              <li><a id="menutitle2" >30 px &#x25be;</a>
+                <ul class="font-sizes">
+                  <li style="font-size: 25px"><a>25</a></li>
+                  <li style="font-size: 30px"><a>30</a></li>
+                  <li style="font-size: 35px"><a>35</a></li>
+                  <li style="font-size: 40px"><a>40</a></li>
+                  <li style="font-size: 45px"><a>45</a></li>
+                  <li style="font-size: 50px"><a>50</a></li>
+                  <li style="font-size: 55px"><a>55</a></li>
+                  <li style="font-size: 60px"><a>60</a></li>
+                  <li style="font-size: 65px"><a>65</a></li>
+                  <li style="font-size: 70px"><a>70</a></li>
+                  <li style="font-size: 75px"><a>75</a></li>
+                  <li style="font-size: 80px"><a>80</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          
+
+            <!-- Font color dropdown menu -->
+
+          <div id="font_color_dropdown" class="dropdown">
+            <nav id="color_dropdown">
+              <ul>
+                <li class="current-menu-item">
+                  <li><a id="menutitle3" >Beige  &#x25be;</a>
+                    <ul class="font-colors">
+                      <li style="color:white"><a class="color-box" id="whitebox" style="background-color: White; color:transparent;">White</a></li>
+                      <li style="color:Beige"><a class="color-box" style="background-color: Beige; color:transparent">Beige</a></li>
+                      <li style="color:Mistyrose"><a class="color-box" style="background-color: Mistyrose; color:transparent">Peach</a></li>
+                      <li style="color:lavender"><a class="color-box" style="background-color: Lavender; color:transparent">Lavender</a></li>
+                      <li style="color:#FFFF99"><a class="color-box" style="background-color: #FFFF99; color:transparent">Yellow</a></li>
+                      <li style="color:LightSalmon"><a class="color-box" style="background-color: LightSalmon; color:transparent">Orange</a></li>
+                      <li style="color:#FF565B"><a class="color-box" style="background-color: #FF565B; color:transparent">Red</a></li>
+                      <li style="color:seagreen"><a class="color-box" style="background-color: SeaGreen; color:transparent">Green</a></li>
+                      <li style="color:aqua"><a class="color-box" style="background-color: Aqua; color:transparent">Cyan</a></li>
+                      <li style="color:#168EEA"><a class="color-box" style="background-color: #168EEA; color:transparent">Blue</a></li>
+                      <li style="color:darkslateblue"><a class="color-box" style="background-color: darkslateblue; color:transparent">Navy</a></li>
+                      <li style="color:#555555"><a class="color-box" style="background-color: #555555; color:transparent">Gray</a></li>
+                      <li style="color:Black"><a class="color-box" style="background-color: Black; color:transparent">Black</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+              <div class="checkbox">
+              <input id="boldCheckbox" type="checkbox" class="boldCheckbox" checked/>
+              <label id="boldlabel">Bold</label>
+              <br>
+              <input id="italicCheckbox" type="checkbox" class="italicCheckbox"/>
+              <label id="italiclabel">Italics</label>
+            </div>
+            </div>
+            </div>
+
+       
+              </div>
+              <br>
+              <!-- Description Tag -->
+          <div id="contrastSlider">
+            <input id="contrast" type="range" value="contrast" max="0.5" min="0" step="0.01"><span id="contrastLabel"> Contrast </span> </input>
+          </div> 
+              <div width="400px" class="background_description">Background Options:</div>
+
+              <br>
+          
+
+              <!-- Background Image Gallery -->
+
+              <div id="thumb_images" class="gallerycontainer" >
+                <div style="border-style:solid" class="galleryborder">
+
+                  <!-- Hidden Photo Upload Buttons -->
+
+                  <div class="upload_div"> <img src="../images/upload_button4.gif" width="86px" height="86px"/>
+                    <div class="upload"><%= f.file_field :original_image, :onchange=>"readURL(this);" %></div>
+                    <div class="upload2"><%= f.file_field :original_image, :onchange=>"readURL(this);" %></div>
+                    <div class="upload3"><%= f.file_field :original_image, :onchange=>"readURL(this);" %></div>
+                  </div>
+
+                  <!-- Gallery Images -->
+
+                  <a onload="active" class="thumbnail"><img src="../images/white.gif" width="75px" height="75px" border="0"at="white.gif" onclick="changePicture(this);" /><span><img src="../images/white.gif" /><br /></span></a>
+                  <a class="thumbnail"><img id="activeimg" class="next_to_upload" src="../images/travel.gif" width="75px" height="75px" border="0" at="travel.gif" onclick="changePicture(this);" /><span><img src="../images/travel.gif" /><br /></span></a> 
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/coffee.gif" width="75px" height="75px" border-radius="25px" at="coffee.gif" onclick="changePicture(this);" /><span><img src="../images/coffee.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/meditation.gif" width="75px" height="75px" border="0" at="meditation.gif" onclick="changePicture(this);" /><span><img src="../images/meditation.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/hobbies.gif" width="75px" height="75px" border="0" at="hobbies.gif" onclick="changePicture(this);" /><span><img src="../images/hobbies.gif" /><br /></span></a> 
+                  <a class="thumbnail"><img class="next_to_upload" class="next_to_upload" src="../images/fence.gif" width="75px" height="75px" border="0" at="fence.gif" onclick="changePicture(this);" /><span><img src="../images/fence.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/sheep.gif" width="75px" height="75px" border="0" at="sheep.gif" onclick="changePicture(this);" /><span><img src="../images/sheep.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/flower.gif" width="75px" height="75px" border="0"at="flower.gif" onclick="changePicture(this);" /><span><img src="../images/flower.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/motivation.gif" width="75px" height="75px" border="0" at="motivation.gif" onclick="changePicture(this);" /><span><img src="../images/motivation.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/blurredlights.gif" width="75px" height="75px" border="0"at="blurredlights.gif" onclick="changePicture(this);" /><span><img src="../images/blurredlights.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/man.gif" width="75px" height="75px" border="0"at="man.gif" onclick="changePicture(this);" /><span><img src="../images/man.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/lion.gif" width="75px" height="75px" border="0"at="lion.gif" onclick="changePicture(this);" /><span><img src="../images/lion.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/leaves.gif" width="75px" height="75px" border="0"at="leaves.gif" onclick="changePicture(this);" /><span><img src="../images/leaves.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/tree.gif" width="75px" height="75px" border="0"at="tree.gif" onclick="changePicture(this);" /><span><img src="../images/tree.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/road.gif" width="75px" height="75px" border="0"at="road.gif" onclick="changePicture(this);" /><span><img src="../images/road.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/drops.gif" width="75px" height="75px" border="0"at="drops.gif" onclick="changePicture(this);" /><span><img src="../images/drops.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/scenic2.gif" width="75px" height="75px" border="0"at="scenic2.gif" onclick="changePicture(this);" /><span><img src="../images/scenic2.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/marble.gif" width="75px" height="75px" border="0"at="marble.gif" onclick="changePicture(this);" /><span><img src="../images/marble.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/ocean.gif" width="75px" height="75px" border="0"at="ocean.gif" onclick="changePicture(this);" /><span><img src="../images/ocean.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/snowboard.gif" width="75px" height="75px" border="0"at="snowboard.gif" onclick="changePicture(this);" /><span><img src="../images/snowboard.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/tracks.gif" width="75px" height="75px" border="0"at="tracks.gif" onclick="changePicture(this);" /><span><img src="../images/tracks.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/lonetree.gif" width="75px" height="75px" border="0"at="lonetree.gif" onclick="changePicture(this);" /><span><img src="../images/lonetree.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/bamboo.gif" width="75px" height="75px" border="0"at="bamboo.gif" onclick="changePicture(this);" /><span><img src="../images/bamboo.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/adventure.gif" width="75px" height="75px" border="0"at="adventure.gif" onclick="changePicture(this);" /><span><img src="../images/adventure.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/kayak.gif" width="75px" height="75px" border="0"at="kayak.gif" onclick="changePicture(this);" /><span><img src="../images/kayak.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/octopus.gif" width="75px" height="75px" border="0"at="octopus.gif" onclick="changePicture(this);" /><span><img src="../images/octopus.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/birds.gif" width="75px" height="75px" border="0"at="birds.gif" onclick="changePicture(this);" /><span><img src="../images/birds.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/bike.gif" width="75px" height="75px" border="0"at="bike.gif" onclick="changePicture(this);" /><span><img src="../images/bike.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/sunflower.gif" width="75px" height="75px" border="0"at="sunflower.gif" onclick="changePicture(this);" /><span><img src="../images/sunflower.gif" /><br /></span></a>
+                  <a class="thumbnail"><img class="next_to_upload" src="../images/journey.gif" width="75px" height="75px" border="0"at="journey.gif" onclick="changePicture(this);" /><span><img src="../images/journey.gif" /><br /></span></a>
+
+                  </div>
+                </div>
 
 
-  <div class="actions">
-    <%= f.submit %>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
 
-  </div>
+                <!-- Post and Download Buttons -->
+
+                <div id="buttons" class="buttons">
+                  <a id="downloadLink" download="tile.png" class="button">Download</a>
+                  <a id="postLink" class="button2">Post</a>
+                </div>
+
+                <!-- Hidden Download Configuration -->
+
+                <div id="canvasWrapper" class="outer" style>
+                  <p style="color:#1C1C1C; text-style: none; font-family: Futura"><button style="display:none" type="reset" id="downloadLink" download="tile.png">Download</button></p>
+                </div> 
 
 
-<% end %>
+
+
+              </div>
+
+              <% end %> 
+
+              <!-- JAVASCRIPT -->
+
+              <script>
+
+// Set Text Area Value
+
+
+$("#activeimg").addClass('active');
+
+var defaultQuote = '"Perfection is not attainable, but if we chase perfection we can catch excellence."';
+$("#quoteArea").val(defaultQuote);
+
+// Changes dropdown titles according to selection
+
+$(".font-names > li").click(function() {
+ $("#menutitle").text($(this).text() + " " + "\u25BE"); 
+});
+
+$(".font-sizes > li").click(function() {
+ $("#menutitle2").text($(this).text() + ' px ' + " " + "\u25BE"); 
+});
+
+$(".font-colors > li").click(function() {
+ $("#menutitle3").text($(this).text() + " " + "\u25BE"); 
+});
+
+$(".categories > li").click(function() {
+ $("#menutitle4").text($(this).text() + " " + "\u25BE"); 
+});
+
+
+
+// Changes picture on click of gallery
+
+function changePicture(image) {
+  var at = $(image).attr('at');
+  var newpath = '../images/' + at;
+  $("#img_prev").attr('src', newpath);
+}
+
+// Draggable
+
+function handle_mousedown(e){
+    window.my_dragging = {};
+    my_dragging.pageX0 = e.pageX;
+    my_dragging.pageY0 = e.pageY;
+    my_dragging.elem = this;
+    my_dragging.offset0 = $(this).offset();
+    
+    $('.wrap')
+    .on('mouseup', handle_mouseup)
+    .on('mousemove', handle_dragging);    
+}
+function handle_dragging(e){
+        var left = my_dragging.offset0.left + (e.pageX - my_dragging.pageX0);
+        var top = my_dragging.offset0.top + (e.pageY - my_dragging.pageY0);
+        $(my_dragging.elem)
+        .offset({top: top, left: left});
+}
+function handle_mouseup(e){
+  $('.wrap')
+    .off('mousemove', handle_dragging)
+    .off('mouseup', handle_mouseup);
+}
+    
+$('.wrap .desc').mousedown(handle_mousedown);
+
+
+// Reads image upload and changes background preview
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#img_prev')
+      .attr('src', e.target.result)
+      .width(450)
+      .height(450);
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+};
+
+// Changes text attributes on selection of dropdown
+
+$(document).on("click", '.font-names li a',  function() {    
+  $("#imagewrap h3").css("font-family", $(this).parent().css("font-family"));
+  $("#new_tile_font_style").val($(this).parent().css("font-family"));
+});
+
+$(document).on("click", '.font-sizes li a',  function() {    
+  $("#imagewrap h3").css("font-size", $(this).parent().css("font-size"));
+  $("#new_tile_font_size").val($(this).parent().css("font-size") + "px");
+});
+
+$(document).on("click", '.font-colors li a',  function() {    
+  $("#imagewrap h3").css("color", $(this).parent().css("color"));
+  $("#new_tile_font_color").val($(this).parent().css("color"));
+});
+
+  // Changes quote according to user text area
+
+ $("#quoteArea").on('keyup', function() {
+   var enteredText = $("#quoteArea").val().replace(/\n/g, "<br>");
+   $("#imagewrap h3").html(enteredText);
+   $("#quoteArea").html(enteredText);
+ });
+
+// Bold Checkbox
+  
+$('#boldCheckbox').on('change', function() {
+  $('#imagewrap h3').css({fontWeight: this.checked?'bold':'normal'});
+})
+
+$('#italicCheckbox').on('change', function() {
+  $('#imagewrap h3').css({fontStyle: this.checked?'italic':'normal'});
+});
+
+$('#thumb_images').on('click' , 'a.thumbnail > img', function(){
+    $('#thumb_images img').removeClass('active');
+    $(this).addClass('active');
+});
+
+
+
+// Tile Download 
+
+function reRender() {
+  html2canvas(document.getElementById("imagewrap"), {
+    onrendered: function(canvas) {
+      canvas.id = "html2canvas";
+      var oldcanvas = document.getElementById("html2canvas");
+      if(oldcanvas) oldcanvas.parentNode.removeChild(oldcanvas);
+      document.getElementById("canvasWrapper").appendChild(canvas);
+
+      canvas.toBlob(function(blob) {
+        saveAs(blob, "tile.png");
+      });
+
+    },
+    useCORS: true
+  });
+}
+
+
+var downloadButton = document.getElementById('downloadLink'); 
+downloadButton.addEventListener(
+  'click', 
+  function (e) { 
+    reRender();
+    var canvas = document.getElementById("html2canvas");
+  });
+
+// Random Quote Button
+
+$('#contrast').on('input', function() {
+    $('#contrastFilter').css('opacity', $(this).val());
+});
+
+var quotes = <%= raw Quote.all.map {|q| [q.quote, q.author, q.genre]}.to_json %>;
+var random_quote = function(){
+  var quote_item = quotes[Math.floor(Math.random()*quotes.length)];
+  return '"'+quote_item[0]+'"  - '+quote_item[1];
+};
+
+$("#randomQuote").click(function(){
+  var new_random_quote= random_quote();
+  $("#quoteArea").val(new_random_quote);
+  $("#imagewrap h3").html(new_random_quote);
+});
+
+function populateQuote(){
+  var generatedQuote = '"'+quote_item[0]+'" - '+quote_item[1];
+  $("#quoteArea").val(generatedQuote).replace(/\n/g, "<br>");;
+  $("#imagewrap h3").html(generatedQuote);
+
+};
+
+var quoteButton = document.getElementById('randomQuote');
+quoteButton.addEventListener('click', function (){
+  populateQuote();
+});
+
+
+
+</script>
+
+      </body>
+      </html>

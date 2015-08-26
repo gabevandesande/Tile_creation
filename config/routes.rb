@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  
-
-  
-
+  get '/quotes/new'
   resources :new_tiles
+  resources :quotes
   
   #resources :user_tiles
   # The priority is based upon order of creation: first created -> highest priority.

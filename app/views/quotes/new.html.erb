@@ -1,0 +1,12 @@
+<h1>Add Quote</h1>
+
+<%= form_for :quote, url: quotes_path do |f| %>
+  <p>
+    <%= f.label :quote %><br>
+    <%= f.text_area :quote %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,210 @@
+
+<%= form_for @new_tile, html: { multipart: true } do |f| %>
+  <% if @new_tile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@new_tile.errors.count, "error") %> prohibited this new_tile from being saved:</h2>
+      <ul>
+      <% @new_tile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+<div id="image_text" width ="640" height="640">
+  <div class="wrap">
+    <img src= "../images/environment.gif" id="img_prev" />
+    <h3 class="desc">Something Inspirational</h3>
+  </div>
+</div>
+
+
+<div id="quote"> 
+  <div class="field">
+    <%= f.label :quote %><br>
+
+    <textarea rows="4" cols="65" <%= f.text_area :quote %> </textarea>
+  </div>
+</div>
+
+
+<div id="image">
+  <div class="field">
+    <%= f.label :upload_an_image %><br>
+    <%= f.file_field :original_image, :onchange=>"readURL(this);" %>
+  </div>
+</div>
+
+
+<div> Or select one of these.. </div>
+
+
+<!-- <div id="font_size">
+  <div class="field">
+    <%= f.label :font_size %><br>
+    <%= f.text_field :font_size %>
+  </div>
+</div>
+
+
+<div id="font_color" value="white">
+  <div class="field">
+    <%= f.label :Font_Color %><br>
+    <%= f.text_field :font_color %>
+  </div>
+</div>
+ -->
+
+<div id="thumb_images" class="gallerycontainer">
+
+<a class="thumbnail" href="#thumb"><img src="../images/hobbies.gif" width="100px" height="66px" border="0" /><span><img src="../images/hobbies.gif" /><br /></span></a>
+
+<a class="thumbnail" href="#thumb"><img src="../images/fantasy.gif" width="100px" height="66px" border="0" /><span><img src="../images/fantasy.gif" /><br /></span></a>
+
+<a class="thumbnail" href="#thumb"><img src="../images/motivation.gif" width="100px" height="75px" border="0" /><span><img src="../images/motivation.gif" /><br /></span></a> 
+
+<a class="thumbnail" href="#thumb"><img src="../images/darknature.gif" width="100px" height="70px" border="0" /><span><img src="../images/darknature.gif" /><br /></span></a>
+<a class="thumbnail" href="#thumb"><img src="../images/environment.gif" width="100px" height="66px" border="0" /><span><img src="../images/environment.gif" /><br /></span></a>
+
+<a class="thumbnail" href="#thumb"><img src="../images/serene2.gif" width="100px" height="66px" border="0" /><span><img src="../images/serene2.gif" /><br /></span></a>
+
+<a class="thumbnail" href="#thumb"><img src="../images/lovenature.gif" width="100px" height="75px" border="0" /><span><img src="../images/lovenature.gif" /><br /></span></a> 
+
+<a class="thumbnail" href="#thumb"><img src="../images/productivity.gif" width="100px" height="70px" border="0" /><span><img src="../images/productivity.gif" /><br /></span></a>
+
+
+
+<nav id="primary_nav_wrap">
+<ul>
+  <li class="current-menu-item"><a>
+  <li><a href="#">Font</a>
+    <ul class="font-names">
+      <li style="font-family: palatino"><a>Palatino</a></li>
+      <li style="font-family: impact"><a>Impact</a></li>
+      <li style="font-family: courier"><a>Courier</a></li>
+      <li style="font-family: tahoma"><a>Tahoma</a></li>
+      <li style="font-family: Copperplate"><a>Copperplate</a></li>
+      <li style="font-family: Monospace"><a>Monospace</a></li>
+      <li style="font-family: Fantasy"><a>Fantasy</a></li>
+      <li style="font-family: Calibri"><a>Calibri</a></li>
+      <li style="font-family: Cursive"><a>Cursive</a></li>
+      <li style="font-family: Futura"><a>Futura</a></li>
+      <li style="font-family: Rockwell"><a>Rockwell</a></li>
+    </ul>
+  </li>
+</ul>
+</nav>
+
+
+<nav id="primary_nav_wrap">
+<ul>
+  <li class="current-menu-item"><a>
+  <li><a href="#">Size</a>
+    <ul class="font-sizes">
+      <li style="font-size: 40px"><a>40</a></li>
+      <li style="font-size: 50px"><a>50</a></li>
+      <li style="font-size: 60px"><a>60</a></li>
+      <li style="font-size: 70px"><a>70</a></li>
+      <li style="font-size: 80px"><a>80</a></li>
+      <li style="font-size: 90px"><a>90</a></li>
+      <li style="font-size: 100px"><a>100</a></li>
+    </ul>
+  </li>
+</ul>
+</nav>
+
+
+<nav id="primary_nav_wrap">
+<ul>
+  <li class="current-menu-item"><a>
+  <li><a href="#">Color</a>
+    <ul class="font-colors">
+      <li style="color: white"><a>White</a></li>
+      <li style="color: red"><a>Red</a></li>
+      <li style="color: blue"><a>Blue</a></li>
+      <li style="color: yellow"><a>Yellow</a></li>
+      <li style="color: green"><a>Green</a></li>
+      <li style="color: Beige"><a>Beige</a></li>
+      <li style="color: Black"><a>Black</a></li>
+      <li style="color: cyan"><a>Cyan</a></li>
+      <li style="color: lavender"><a>Lavender</a></li>
+      <li style="color: navy"><a>Navy</a></li>
+      <li style="color: purple"><a>Purple</a></li>
+    </ul>
+  </li>
+</ul>
+<%= f.submit %>
+</nav>
+
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#img_prev')
+          .attr('src', e.target.result)
+          .width(640)
+          .height(640);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  };
+
+
+//   function hover(element) {
+//     element.setAttribute('src', 'http://dummyimage.com/100x100/eb00eb/fff');
+// }
+
+  $(document).on("click", '.font-names li a',  function() {    
+    $("#image_text .wrap h3").css("font-family", $(this).parent().css("font-family"));
+  });
+
+  $(document).on("click", '.font-sizes li a',  function() {    
+      $("#image_text .wrap h3").css("font-size", $(this).parent().css("font-size"));
+    });
+  
+
+  $(document).on("click", '.font-colors li a',  function() {    
+      $("#image_text .wrap h3").css("color", $(this).parent().css("color"));
+    });
+
+  $("#new_tile_quote").on('keyup', function() {
+   var enteredText = $("#new_tile_quote").val().replace(/\n/g, "<br>");
+    $("#image_text .wrap h3").html(enteredText);
+    });
+
+
+  </script>
+<!-- <div id="font_style">
+  <div class="field">
+    <%= f.label :font_style %><br>
+    <%= f.text_field :font_style %>
+  </div>
+</div> -->
+
+
+<!-- 
+<div class="suggestion">
+  <strong><p> Suggested Fonts:</p></strong>
+          <p style="font-family: palatino"> Palatino </p>
+          <p style="font-family: impact"> Impact </p>
+          <p style="font-family: courier"> Courier </p>
+          <p style="font-family: tahoma"> Tahoma </p>
+          <p style="font-family: century"> Century </p>
+          <p style="font-family: Arial"> Arial </p>
+          <p style="font-family: Copperplate"> Copperplate </p>
+          <p style="font-family: Monospace"> Monospace </p>
+          <p style="font-family: Fantasy"> Fantasy </p>
+          <p style="font-family: calibri"> Calibri </p>
+          <p style="font-family: Cursive"> Cursive </p>
+          <p style="font-family: sans-serif"> Sans-Serif </p>
+          <p style="font-family: futura"> Futura </p>
+          <p style="font-family: rockwell"> Rockwell </p>
+</div> -->
+
+
+
+<% end %>

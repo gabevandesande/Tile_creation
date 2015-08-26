@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708211635) do
+ActiveRecord::Schema.define(version: 20150727193152) do
+
+  create_table "ls", force: :cascade do |t|
+    t.string   "Quotes"
+    t.text     "quote"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "new_tiles", force: :cascade do |t|
     t.string   "original_image"
@@ -26,6 +33,11 @@ ActiveRecord::Schema.define(version: 20150708211635) do
     t.string   "border_color"
     t.string   "border_width"
     t.string   "font_outline_width"
+  end
+
+  create_table "quotes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

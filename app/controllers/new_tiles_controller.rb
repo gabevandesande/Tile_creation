@@ -70,6 +70,6 @@ class NewTilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def new_tile_params
-      params.require(:new_tile).permit(:original_image, :quote, :output_image, :font_size, :font_color, :font_outline, :font_style, :border_color, :border_width, :font_outline_width)
+      params.require(:new_tile).permit(:original_image)
     end
 end
