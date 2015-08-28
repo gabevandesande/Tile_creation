@@ -14,8 +14,6 @@ body {
   user-select: none;
   height:100%;
   overflow: hidden;
-
-
  
   .container {
     background-color: #FFFFFF;
@@ -33,7 +31,6 @@ body {
     border-style: solid;
     border-width:2px;
     border-color:#F3F3F3;
-
   }
 }
 
@@ -43,7 +40,6 @@ a {
     &:visited {
       color: #666;
       }
-
 
   &:hover {
     color:#589EDB;
@@ -61,7 +57,6 @@ textarea {
   outline-width: 2px;
   outline-color: #589EDB;
   }
-
 
 div {
 
@@ -428,6 +423,13 @@ img.active{border-color:#589EDB;
   background:#81b6e4;
   }
 
+.checkbox {
+  position: relative;
+  display:block;
+  top:30%;
+  margin-top: none;
+  padding:10px; 
+}
 
 /* Sort By ID */
 
@@ -756,7 +758,6 @@ img.active{border-color:#589EDB;
   color: #555555;
   z-index:200;
   }
-/*other nav wrap*/
 
 #imagewrap {
   background-color: white;
@@ -768,25 +769,20 @@ img.active{border-color:#589EDB;
   float: right;
   }
 
-input#boldCheckbox:checked+label{font-weight:bold;}
-input#italicCheckbox:checked+label{font-style:italic;}
+input#boldCheckbox:checked+label{
+  font-weight:bold;
+  }
+
+input#italicCheckbox:checked+label{
+  font-style:italic;
+  }
 
 #boldCheckbox {
   cursor:pointer;
-
 }
 
 #italicCheckbox {
   cursor:pointer;
-}
-
-.checkbox {
-  position: relative;
-  display:block;
-  top:30%;
-  margin-top: none;
-  padding:10px; 
-
 }
 
 #contrastFilter{

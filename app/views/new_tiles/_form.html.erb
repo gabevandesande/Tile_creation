@@ -14,17 +14,12 @@ red: #FF565B
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <body>
   <div class="container">
-    <!-- Description Tag -->
-
-
 
     <!-- CARRIERWAVE PRESETS -->
 
     <%= form_for @new_tile, html: { multipart: true } do |f| %>
 
-
     <!-- HTML -->
-    
 
     <div class="header">Create Your Own Content</div>
     
@@ -43,35 +38,11 @@ red: #FF565B
     <div class="description">What do you want to say?</div>
     
     <!-- Quote Textarea -->
-    
 
     <div id="quote" class="quote"> 
       <div class="field">
         <textarea class="textarea" id="quoteArea" rows="5" cols="53"></textarea>
         <a id="randomQuote" class="randomQuote">Random Quote  &#x270E;</a>
-          <!-- <div id="category_dropdown" class="dropdown">
-            <nav id="category_nav_wrap">
-              <ul>
-                <li class="current-menu-item"><a>
-                  <li><a id="menutitle4" >Select</a>
-                    <ul class="categories" >
-                      <li><a>Age</a></li>
-                      <li><a>Wisdom</a></li>
-                      <li><a>Family</a></li>
-                      <li><a>Love</a></li>
-                      <li><a>Nature</a></li>
-                      <li><a>Power</a></li>
-                      <li><a>Motivational</a></li>
-                      <li><a>Success</a></li>
-                      <li><a>Positive</a></li>
-                      <li><a>Peace</a></li>
-                      <li><a>Fitness</a></li>
-                      <li><a>Knowledge</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </nav>
-            </div> -->
       </div>
     </div>
 
@@ -166,19 +137,16 @@ red: #FF565B
             </div>
             </div>
             </div>
-
-       
               </div>
               <br>
               <!-- Description Tag -->
           <div id="contrastSlider">
-            <input id="contrast" type="range" value="contrast" max="0.5" min="0" step="0.01"><span id="contrastLabel"> Contrast </span> </input>
+            <input id="contrast" type="range" value="contrast" max="0.4" min="0" step="0.01"><span id="contrastLabel"> Contrast </span> </input>
           </div> 
               <div width="400px" class="background_description">Background Options:</div>
 
               <br>
           
-
               <!-- Background Image Gallery -->
 
               <div id="thumb_images" class="gallerycontainer" >
@@ -228,7 +196,6 @@ red: #FF565B
                   </div>
                 </div>
 
-
                 <br></br>
                 <br></br>
                 <br></br>
@@ -250,9 +217,6 @@ red: #FF565B
                   <p style="color:#1C1C1C; text-style: none; font-family: Futura"><button style="display:none" type="reset" id="downloadLink" download="tile.png">Download</button></p>
                 </div> 
 
-
-
-
               </div>
 
               <% end %> 
@@ -261,8 +225,7 @@ red: #FF565B
 
               <script>
 
-// Set Text Area Value
-
+// Set Page Defaults
 
 $("#activeimg").addClass('active');
 
@@ -286,8 +249,6 @@ $(".font-colors > li").click(function() {
 $(".categories > li").click(function() {
  $("#menutitle4").text($(this).text() + " " + "\u25BE"); 
 });
-
-
 
 // Changes picture on click of gallery
 
@@ -323,7 +284,6 @@ function handle_mouseup(e){
 }
     
 $('.wrap .desc').mousedown(handle_mousedown);
-
 
 // Reads image upload and changes background preview
 
@@ -366,7 +326,7 @@ $(document).on("click", '.font-colors li a',  function() {
    $("#quoteArea").html(enteredText);
  });
 
-// Bold Checkbox
+// Text Checkboxes
   
 $('#boldCheckbox').on('change', function() {
   $('#imagewrap h3').css({fontWeight: this.checked?'bold':'normal'});
@@ -381,8 +341,6 @@ $('#thumb_images').on('click' , 'a.thumbnail > img', function(){
     $(this).addClass('active');
 });
 
-
-
 // Tile Download 
 
 function reRender() {
@@ -392,16 +350,13 @@ function reRender() {
       var oldcanvas = document.getElementById("html2canvas");
       if(oldcanvas) oldcanvas.parentNode.removeChild(oldcanvas);
       document.getElementById("canvasWrapper").appendChild(canvas);
-
       canvas.toBlob(function(blob) {
         saveAs(blob, "tile.png");
       });
-
     },
     useCORS: true
   });
 }
-
 
 var downloadButton = document.getElementById('downloadLink'); 
 downloadButton.addEventListener(
@@ -411,11 +366,13 @@ downloadButton.addEventListener(
     var canvas = document.getElementById("html2canvas");
   });
 
-// Random Quote Button
+// Contrast Slider
 
 $('#contrast').on('input', function() {
     $('#contrastFilter').css('opacity', $(this).val());
 });
+
+// Random Quote Button
 
 var quotes = <%= raw Quote.all.map {|q| [q.quote, q.author, q.genre]}.to_json %>;
 var random_quote = function(){
@@ -440,8 +397,6 @@ var quoteButton = document.getElementById('randomQuote');
 quoteButton.addEventListener('click', function (){
   populateQuote();
 });
-
-
 
 </script>
 
